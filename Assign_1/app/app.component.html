@@ -1,0 +1,200 @@
+<div class="card">
+  <h5 class="card-header card-header-color">User Registration</h5>
+  <div class="card-body">
+    <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
+      <div class="row">
+        
+        <div class="col">
+          <label>First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && loginform.controls.firstName.errors
+            }"
+            formControlName="firstName"
+          />
+          <div
+            *ngIf="submitted && loginform.controls.firstName.errors"
+            class="text-danger"
+          >
+            <div
+              *ngIf="submitted && loginform.controls.firstName.errors.required"
+            >
+              First Name is required.
+            </div>
+            <div
+              *ngIf="loginform.controls.firstName.errors.pattern"
+            >
+              Numbers can't be Inputed
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <label>Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && loginform.controls.lastName.errors
+            }"
+            formControlName="lastName"
+          />
+          <div
+            *ngIf="submitted && loginform.controls.lastName.errors"
+            class="text-danger"
+          >
+            <div
+              *ngIf="submitted && loginform.controls.lastName.errors.required"
+            >
+              Last Name is required.
+            </div>
+
+            <div
+            *ngIf="loginform.controls.lastName.errors.pattern"
+          >
+            Numbers can't be Inputed
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-3" style="block-size: auto; width: 20%">
+          <label>Gender</label>
+          <div class="row">
+            <div class="col-9">
+              <input
+                id="male"
+                type="radio"
+                value="male"
+                name="gender"
+                formControlName="gender"
+              />
+              <label for="male">Male</label>
+            </div>
+            <div class="col">
+              <input
+                id="female"
+                type="radio"
+                value="female"
+                name="gender"
+                formControlName="gender"
+              />
+              <label for="female">Female</label>
+            </div>
+          </div>
+          <!-- <input type="radio" class="form-control" formControlName="gender"/> -->
+        </div>
+        <div class="col-4" style="padding: 0%">
+          <label>Date of Birth</label>
+          <input
+            type="date"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && loginform.controls.dob.errors
+            }"
+            formControlName="dob"
+          />
+          <div
+            *ngIf="submitted && loginform.controls.dob.errors"
+            class="text-danger"
+          >
+            <div *ngIf="submitted && loginform.controls.dob.errors.required">
+              Date of Birth is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-5 roli" style="padding-top: 0%; padding-left: 7%">
+          <mat-label style="position: absolute">Select Role</mat-label>
+          <mat-form-field>
+            <mat-select
+              class="rolii"
+              [ngClass]="{
+                'is-invalid': submitted && loginform.controls.select_role.errors
+              }"
+              formControlName="select_role"
+            >
+              <mat-option *ngFor="let role of role" [value]="role.value">
+                {{ role.viewValue }}
+              </mat-option>
+            </mat-select>
+            <div
+              *ngIf="submitted && loginform.controls.select_role.errors"
+              class="text-danger"
+            >
+              <div
+                *ngIf="
+                  submitted && loginform.controls.select_role.errors.required
+                "
+              >
+                Selecting Role is required.
+              </div>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <h4>Skills:</h4>
+          <section
+            class="checkin"
+            [ngClass]="{
+              'is-invalid': submitted && loginform.controls.check.errors
+            }"
+            formGroupName="check"
+          >
+            <p><mat-checkbox>Angular</mat-checkbox></p>
+            <p><mat-checkbox>Java</mat-checkbox></p>
+            <p><mat-checkbox>React</mat-checkbox></p>
+          </section>
+        </div>
+        <div class="col-9" style="padding: 0%">
+          <label>Email</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid': submitted && loginform.controls.email.errors
+            }"
+            formControlName="email"
+          />
+          <div
+            *ngIf="submitted && loginform.controls.email.errors"
+            class="text-danger"
+          >
+            <div *ngIf="submitted && loginform.controls.email.errors.required">
+              Email is required.
+            </div>
+            <div *ngIf="submitted && loginform.controls.email.errors.email">
+              Email is invalid.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col about">
+          <label>About Employee</label>
+          <input
+            type="text"
+            class="form-control"
+            style="block-size: 50px"
+            formControlName="about"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col" style="padding-left: 30%">
+          <button mat-raised-button (click)="onCancel()">CANCEL</button>
+        </div>
+        <div class="col" style="padding-right: 30%">
+          <button type="submit" style="position: absolute" mat-raised-button>
+            SAVE
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
